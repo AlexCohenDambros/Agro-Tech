@@ -7,12 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FarmComponent implements OnInit {
 
-  title = 'Minha Fazenda'
+  public title = 'Minha Fazenda'
 
   farms = [
-    {name: "Fazenda Parolin", address: "Rua das Rosas, 123, Bairro Jardim Alegre, Cidade Florescência, Estado Imaginário, CEP: 01234-567."},
-    {name: "Fazenda Recanto Verde", address: "Avenida do Bosque, 456, Bairro Vista Serena, Cidade Sombra Verde, Estado Fantasia, CEP: 98765-432."},
-    {name: "Rancho Sol Nascente", address: "Estrada do Sol Nascente, 789, Sítio Aurora, Cidade Campo Dourado, Estado dos Sonhos, CEP: 87654-321."}
+    {id: 145, name: "Fazenda Parolin", street: "Rua das Rosas, 123", district: "Bairro Jardim Alegre", city: "Cidade Florescência, Estado Imaginário", zip_code: "01234-567"},
+    {id: 146, name: "Fazenda Recanto Verde", street: "Avenida do Bosque, 456", district: " Bairro Vista Serena", city: "Cidade Sombra Verde, Estado Fantasia", zip_code: "98765-432"},
+    {id: 147, name: "Rancho Sol Nascente", street: "Estrada do Sol Nascente, 789", district: "Sítio Aurora", city: "Cidade Campo Dourado, Estado dos Sonhos", zip_code: "87654-321"}
   ];
 
   constructor() { }

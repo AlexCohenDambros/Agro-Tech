@@ -10,9 +10,9 @@ export class MarketComponent implements OnInit {
   title = "Mercado"
 
   products = [
-    {name: "Sója", qtd: "5", price: "10"},
-    {name: "Arroz", qtd: "6", price: "50"},
-    {name: "Milho", qtd: "10", price: "15"}
+    {id: 12345, name: "Sója", qtd: "5", price: "10"},
+    {id: 12346, name: "Arroz", qtd: "6", price: "50"},
+    {id: 12347, name: "Milho", qtd: "10", price: "15"}
   ];
 
   constructor() { }

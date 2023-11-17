@@ -1,6 +1,24 @@
-<h1>{{title}}</h1>
-<ul>
-  <li *ngFor="let prod of products">
-    {{prod.name}}
-  </li>
-</ul>
+<app-title [title]="title"></app-title>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Quantidade</th>
+      <th scope="col">Preço</th>
+      <th scope="col">Total</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let prod of products">
+      <th scope="row">{{prod.id}}</th>
+      <td>{{prod.name}}</td>
+      <td>{{prod.qtd}}</td>
+      <td>{{prod.price}}</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+

@@ -1,6 +1,26 @@
-<h1>{{title}}</h1>
-<ul>
-  <li *ngFor="let farm of farms">
-    {{farm.name}}
-  </li>
-</ul>
+<app-title [title]="title"></app-title>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Rua</th>
+      <th scope="col">Bairro</th>
+      <th scope="col">Cidade</th>
+      <th scope="col">CEP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let farm of farms">
+      <th scope="row">{{farm.id}}</th>
+      <td>{{farm.name}}</td>
+      <td>{{farm.street}}</td>
+      <td>{{farm.district}}</td>
+      <td>{{farm.city}}</td>
+      <td>{{farm.zip_code}}</td>
+    </tr>
+  </tbody>
+</table>
+
+
