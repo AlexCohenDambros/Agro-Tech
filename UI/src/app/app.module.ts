@@ -9,9 +9,12 @@ import { HomeComponent } from './component-home/component-home.component';
 import { ProfileComponent } from './component-profile/component-profile.component';
 import { NavComponent } from './nav/nav.component';
 import { TitleComponent } from './title/title.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
-  declarations: [		
+  declarations: [
     AppComponent,
       FarmComponent,
       MarketComponent,
@@ -22,7 +25,10 @@ import { TitleComponent } from './title/title.component';
    ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BsDropdownModule.forRoot(),
+    BrowserAnimationsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
