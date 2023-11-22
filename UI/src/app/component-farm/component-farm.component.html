@@ -1,26 +1,34 @@
-<app-title [title]="title"></app-title>
 
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nome</th>
-      <th scope="col">Rua</th>
-      <th scope="col">Bairro</th>
-      <th scope="col">Cidade</th>
-      <th scope="col">CEP</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let farm of farms">
-      <th scope="row">{{farm.id}}</th>
-      <td>{{farm.name}}</td>
-      <td>{{farm.street}}</td>
-      <td>{{farm.district}}</td>
-      <td>{{farm.city}}</td>
-      <td>{{farm.zip_code}}</td>
-    </tr>
-  </tbody>
-</table>
-
+<div *ngIf="farmSelected">
+  <app-title [title]="'Fazenda: ' + farmSelected.name"></app-title>
+  <br />
+  <button class="btn btn-default" (click)="return()">Voltar</button>
+</div>
+<div *ngIf="!farmSelected">
+  <app-title [title]="'Minhas Fazendas'"></app-title>
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Fazenda</th>
+        <th scope="col">Rua</th>
+        <th scope="col">Bairro</th>
+        <th scope="col">Cidade</th>
+        <th scope="col">CEP</th>
+        <th scope="col">Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let farm of farms" style="cursor: pointer;" (click)="farmSelect(farm)">
+        <th scope="row">{{farm.id}}</th>
+        <td>{{farm.name}}</td>
+        <td>{{farm.street}}</td>
+        <td>{{farm.district}}</td>
+        <td>{{farm.city}}</td>
+        <td>{{farm.zip_code}}</td>
+        <td>{{farm.date}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
