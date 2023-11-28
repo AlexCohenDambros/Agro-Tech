@@ -1,19 +1,19 @@
 namespace API.Models
 {
-    public class ItemFarm
+    public class ItemTeacher
     {
-        public ItemFarm() { }
+        public ItemTeacher() { }
 
-        public ItemFarm(int itemId, int farmId)
+        public ItemTeacher(int itemId, int teacherId)
         {
             this.ItemId = itemId;
-            this.FarmId = farmId;
+            this.TeacherId = teacherId;
 
         }
         public int ItemId { get; set; }
-        public int FarmId { get; set; }
+        public int TeacherId { get; set; }
         public Item Item { get; set; }
-        public Farm Farm { get; set; }
+        public Teacher Teacher { get; set; }
 
     }
 }

@@ -1,0 +1,78 @@
+<div class="row">
+
+  <div class="col-sm-6" *ngIf="studentSelected">
+    <div class="row">
+      <div class="mr-auto">
+        <app-title [title]="'Aluno Selecionado: ' + studentSelected.name"></app-title>
+      </div>
+      <div class="mt-1">
+        <button class="btn btn-sm btn-outline-danger" (click)="return()">
+          Fechar
+        </button>
+      </div>
+    </div>
+
+    <form [formGroup]="studentForm">
+      <div class="form-group">
+        <label for="formGroupExampleInput">Nome</label>
+        <input type="text" formControlName="name" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput2">Sobrenome</label>
+        <input type="text" formControlName="lastname" class="form-control">
+      </div>
+      <div class="form-group">
+        <hr>
+        <button class="btn btn-success" [disabled]="!studentForm.valid">Enviar</button>
+      </div>
+    </form>
+  </div>
+
+  <div [ngClass]="{'col-sm-6': studentSelected, 'col-sm-12': !studentSelected}">
+    <app-title [title]="'Alunos'"></app-title>
+    <table class="table table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Sobrenome</th>
+          <th scope="col">Matrícula</th>
+          <th scope="col">Data de Matrícula</th>
+          <th scope="col">Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students" style="cursor: pointer;">
+          <td (click)="studentSelect(student)" scope="row">{{student.id}}</td>
+          <td (click)="studentSelect(student)">{{student.name}}</td>
+          <td (click)="studentSelect(student)">{{student.lastname}}</td>
+          <td (click)="studentSelect(student)">{{student.enrollment}}</td>
+          <td (click)="studentSelect(student)">{{student.date_enrollment}}</td>
+          <td>
+            <div class="btn-group">
+              <button (click)="openModal(template)" class="btn btn-sm btn-outline-primary">Professores</button>
+              <button class="btn btn-sm btn-outline-danger">Desativar</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      Gráfico
+      <!-- criar um componente pra cada, chart js -->
+    </div>
+  </div>
+
+</div>
+
+
+<ng-template #template>
+  <div class="modal-body">
+    <app-component-teacher></app-component-teacher>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn pull-right btn-danger" aria-label="Close" (click)="modalRef?.hide()">
+      FECHAR
+    </button>
+  </div>
+</ng-template>

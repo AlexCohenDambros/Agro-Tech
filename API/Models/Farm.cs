@@ -1,9 +1,9 @@
 namespace API.Models
 {
-    public class Farm
+    public class Teacher
     {
-        public Farm() { }
-        public Farm(int id, string name, string street, string district, string city, string zip_code, string date)
+        public Teacher() { }
+        public Teacher(int id, string name, string street, string district, string city, string zip_code, string date)
         {
             this.id = id;
             this.name = name;

@@ -4,20 +4,23 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    
-    public class FarmController: ControllerBase
+
+    public class TeacherController : ControllerBase
     {
+
         [HttpGet]
+
         public IActionResult Get()
         {
-            try{
-               return Ok("teste2");
+            try
+            {
+                return Ok("teste2");
             }
             catch (Exception ex)
             {
                 return BadRequest($"Error: {ex.Message}");
             }
-            
+
         }
     }
 }

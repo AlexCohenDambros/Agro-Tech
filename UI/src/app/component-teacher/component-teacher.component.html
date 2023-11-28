@@ -1,0 +1,26 @@
+
+<div *ngIf="teacherSelected">
+  <app-title [title]="'Professor: ' + teacherSelected.name"></app-title>
+  <br />
+  <button class="btn btn-default" (click)="return()">Voltar</button>
+</div>
+<div *ngIf="!teacherSelected">
+  <app-title [title]="'Professores'"></app-title>
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Sobrenome</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let teacher of teachers" style="cursor: pointer;" (click)="teacherSelect(teacher)">
+        <th scope="row">{{teacher.id}}</th>
+        <td>{{teacher.name}}</td>
+        <td>{{teacher.lastname}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
