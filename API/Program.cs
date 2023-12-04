@@ -9,6 +9,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<StudentRepository>();
+builder.Services.AddScoped<DisciplineRepository>();
 
 var app = builder.Build();
 

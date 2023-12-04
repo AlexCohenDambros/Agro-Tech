@@ -4,15 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-
     [ApiController]
     [Route("api/[controller]")]
-
-    public class StudentController : ControllerBase
+    public class DisciplineController : ControllerBase
     {
-
-        private IStudentRepository repository;
-        public StudentController(StudentRepository repository)
+        private IDisciplineRepository repository;
+        public DisciplineController(DisciplineRepository repository)
         {
             this.repository = repository;
         }
@@ -22,7 +19,7 @@ namespace API.Controllers
         {
             try
             {
-                return Ok(await repository.GetAllStudent());
+                return Ok(await repository.GetAllDiscipline());
             }
             catch (Exception ex)
             {
@@ -35,12 +32,14 @@ namespace API.Controllers
         {
             try
             {
-                return Ok(await repository.GetStudentById(idStudent));
+                return Ok(await repository.GetDisciplineById(idStudent));
             }
             catch (Exception ex)
             {
                 return BadRequest($"Error: {ex.Message}");
             }
         }
+
+
     }
 }

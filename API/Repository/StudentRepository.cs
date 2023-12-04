@@ -17,5 +17,11 @@ namespace API.Repository
             var result = await connection.QueryAsync<DTOStudent>("SELECT * FROM dbo.TABLE_STUDENT");
             return result;
         }
+
+        public async Task<DTOStudent> GetStudentById(int idStudent){
+            using var connection = new SqlConnection(_configuration.GetConnectionString("SqlConnection"));
+            var result = await connection.QueryFirstAsync<DTOStudent>("SELECT * FROM dbo.TABLE_STUDENT WHERE idStudent = @id", param: new {id = idStudent});
+            return result;
+        }
     }
 }

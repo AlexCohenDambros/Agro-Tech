@@ -2,8 +2,8 @@ namespace API.Repository
 {
     public class DTODiscipline
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public int teacherId { get; set; }
+        public int idDiscipline { get; set; }
+        public string nameDiscipline { get; set; }
+        public int idTeacher { get; set; }
     }
 }
