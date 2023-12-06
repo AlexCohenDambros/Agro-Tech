@@ -44,11 +44,11 @@ namespace API.Controllers
         }
 
         [HttpGet("ByDiscipline/{idDiscipline}")]
-        public async Task<IActionResult> GetByDisciplinaId(int idDiscipline)
+        public async Task<IActionResult> GetDisciplineById(int idDiscipline)
         {
             try
             {
-                return Ok(await repository.GetByDisciplinaId(idDiscipline));
+                return Ok(await repository.GetDisciplineById(idDiscipline));
             }
             catch (Exception ex)
             {
@@ -57,11 +57,12 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostStudent(DTOStudent studentDTO)
+        public IActionResult AddStudent(DTOStudent studentDTO)
         {
             try
             {
-                return Ok(await repository.PostStudent(studentDTO));
+                repository.AddStudent(studentDTO);
+                return Ok();
             }
             catch (Exception ex)
             {
@@ -79,7 +80,9 @@ namespace API.Controllers
 
                 if (student == null) return NotFound();
 
-                return Ok(await repository.PutStudent(studentDTO));
+                repository.PutStudent(studentDTO);
+
+                return Ok();
             }
             catch (Exception ex)
             {
@@ -90,21 +93,20 @@ namespace API.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteStudent(int idStudent)
         {
-
             try
             {
                 var student = await repository.GetStudentById(idStudent);
 
                 if (student == null) return NotFound();
 
-                return Ok(await repository.DeleteStudent(idStudent));
+                repository.DeleteStudent(idStudent);
+
+                return Ok();
             }
             catch (Exception ex)
             {
                 return BadRequest($"Erro: {ex.Message}");
             }
         }
-
-
     }
 }
