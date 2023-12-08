@@ -1,8 +1,6 @@
 using Microsoft.Data.SqlClient;
 using Dapper;
 using API.Interface;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 
 namespace API.Repository
 {
