@@ -17,8 +17,8 @@ namespace API.Controllers
             this.repository = repository;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        [HttpGet("/get-all-student")]
+        public async Task<IActionResult> GetAllStudent()
         {
             try
             {
@@ -30,8 +30,8 @@ namespace API.Controllers
             }
         }
 
-        [HttpGet("{idStudent}")]
-        public async Task<IActionResult> GetStudentById(int idStudent)
+        [HttpGet("/get-student-byid")]
+        public async Task<IActionResult> GetStudentById([FromQuery] int idStudent)
         {
             try
             {
@@ -43,12 +43,12 @@ namespace API.Controllers
             }
         }
 
-        [HttpGet("ByDiscipline/{idDiscipline}")]
-        public async Task<IActionResult> GetDisciplineById(int idDiscipline)
+        [HttpGet("/student-discipline")]
+        public async Task<IActionResult> GetDisciplineById([FromQuery] int idStudent)
         {
             try
             {
-                return Ok(await repository.GetDisciplineById(idDiscipline));
+                return Ok(await repository.GetDisciplineById(idStudent));
             }
             catch (Exception ex)
             {
@@ -56,8 +56,8 @@ namespace API.Controllers
             }
         }
 
-        [HttpPost]
-        public IActionResult AddStudent(DTOStudent studentDTO)
+        [HttpPost("/add-student")]
+        public IActionResult AddStudent([FromBody] DTOStudent studentDTO)
         {
             try
             {
@@ -70,13 +70,13 @@ namespace API.Controllers
             }
         }
 
-        [HttpPut]
-        public async Task<IActionResult> PutStudent(int idStudent, DTOStudent studentDTO)
+        [HttpPut("/update-student")]
+        public async Task<IActionResult> PutStudent([FromBody] DTOStudent studentDTO)
         {
 
             try
             {
-                var student = await repository.GetStudentById(idStudent);
+                var student = await repository.GetStudentById(studentDTO.idStudent);
 
                 if (student == null) return NotFound();
 
@@ -90,8 +90,8 @@ namespace API.Controllers
             }
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> DeleteStudent(int idStudent)
+        [HttpDelete("/delte-student")]
+        public async Task<IActionResult> DeleteStudent([FromQuery] int idStudent)
         {
             try
             {

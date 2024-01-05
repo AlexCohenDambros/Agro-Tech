@@ -1,4 +1,5 @@
 using API.Repository;
+
 namespace API.Interface
 {
     public interface ITeacherRepository

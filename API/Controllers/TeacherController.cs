@@ -16,8 +16,8 @@ namespace API.Controllers
             this.repository = repository;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        [HttpGet("/get-all-teacher")]
+        public async Task<IActionResult> GetAllTeacherAsync()
         {
             try
             {
@@ -29,8 +29,8 @@ namespace API.Controllers
             }
         }
 
-        [HttpGet("{idTeacher}")]
-        public async Task<IActionResult> GetTeacherById(int idTeacher)
+        [HttpGet("/get-teacher-byid")]
+        public async Task<IActionResult> GetTeacherById([FromQuery] int idTeacher)
         {
             try
             {
@@ -42,8 +42,8 @@ namespace API.Controllers
             }
         }
 
-        [HttpGet("ByDiscipline/{idDiscipline}")]
-        public async Task<IActionResult> GetTeacherDisciplineById(int idTeacher)
+        [HttpGet("by-discipline")]
+        public async Task<IActionResult> GetTeacherDisciplineById([FromQuery] int idTeacher)
         {
             try
             {
@@ -55,8 +55,8 @@ namespace API.Controllers
             }
         }
 
-        [HttpPost]
-        public IActionResult AddTeacher(DTOTeacher teacherDTO)
+        [HttpPost("/add-new-teacher")]
+        public IActionResult AddTeacher([FromBody] DTOTeacher teacherDTO)
         {
             try
             {
@@ -69,13 +69,13 @@ namespace API.Controllers
             }
         }
 
-        [HttpPut]
-        public async Task<IActionResult> PutTeacher(int idTeacher, DTOTeacher teacherDTO)
+        [HttpPut("/update-teacher")]
+        public async Task<IActionResult> PutTeacher([FromBody] DTOTeacher teacherDTO)
         {
 
             try
             {
-                var student = await repository.GetTeacherById(idTeacher);
+                var student = await repository.GetTeacherById(teacherDTO.idTeacher);
 
                 if (student == null) return NotFound();
 
@@ -89,8 +89,8 @@ namespace API.Controllers
             }
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> DeleteTeacher(int idTeacher)
+        [HttpDelete("/delete-teacher")]
+        public async Task<IActionResult> DeleteTeacher([FromQuery] int idTeacher)
         {
             try
             {
