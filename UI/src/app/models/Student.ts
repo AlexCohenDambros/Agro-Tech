@@ -1,7 +1,7 @@
 export class Student {
-  id: number | undefined;
-  name: string | undefined;
-  lastname: string | undefined;
+  idStudent: number | undefined;
+  nameStudent: string | undefined;
+  lastName: string | undefined;
   enrollment: string | undefined;
   date_enrollment: string | undefined;
   // Date

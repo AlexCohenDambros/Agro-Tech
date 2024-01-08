@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from '../models/Student';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { StudentService } from '../service/student.service';
 
 @Component({
   selector: 'app-component-student',
@@ -18,22 +19,31 @@ export class StudentComponent implements OnInit {
   public studentForm: FormGroup = new FormGroup({});
 
 
-  students = [
-    { id: 12345, name: "Fabricio", lastname: "Silva", enrollment: "2589632541", date_enrollment: "2023-11-28" },
-    { id: 12346, name: "Jonas", lastname: "Pereira", enrollment: "5624897236", date_enrollment: "2023-11-28" },
-    { id: 12347, name: "Rodrigo", lastname: "Alves", enrollment: "1542630128", date_enrollment: "2023-11-28" }
-  ];
+  public students: Student[] | undefined;
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
 
-  constructor(private fb: FormBuilder, private modalService: BsModalService) {
+  constructor(private fb: FormBuilder, private modalService: BsModalService, private studentService: StudentService) {
     this.createForm();
   }
 
   ngOnInit() {
     this.applyControl();
+    this.loadStudents();
+  }
+
+  loadStudents() {
+    this.studentService.getAll().subscribe(
+      (students: Student[]) => {
+        this.students = students;
+      },
+      (erro: any) => {
+        console.log(erro);
+      }
+    );
+
   }
 
   createForm() {

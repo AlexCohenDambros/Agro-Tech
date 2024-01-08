@@ -3,7 +3,7 @@
   <div class="col-sm-6" *ngIf="studentSelected">
     <div class="row">
       <div class="mr-auto">
-        <app-title [title]="'Aluno Selecionado: ' + studentSelected.name"></app-title>
+        <app-title [title]="'Aluno Selecionado: ' + studentSelected.nameStudent"></app-title>
       </div>
       <div class="mt-1">
         <button class="btn btn-sm btn-outline-danger" (click)="return()">
@@ -33,6 +33,7 @@
     <table class="table table-hover">
       <thead class="thead-light">
         <tr>
+          <th scope="col">Visualizar</th>
           <th scope="col">#</th>
           <th scope="col">Nome</th>
           <th scope="col">Sobrenome</th>
@@ -42,25 +43,23 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let student of students" style="cursor: pointer;">
-          <td (click)="studentSelect(student)" scope="row">{{student.id}}</td>
-          <td (click)="studentSelect(student)">{{student.name}}</td>
-          <td (click)="studentSelect(student)">{{student.lastname}}</td>
-          <td (click)="studentSelect(student)">{{student.enrollment}}</td>
-          <td (click)="studentSelect(student)">{{student.date_enrollment}}</td>
+        <tr *ngFor="let student of students">
+          <td><button (click)="studentSelect(student)"
+            class="text-dark btn btn-sm btn-outline-warning" style="cursor: pointer;">Detalhe</button></td>
+          <td scope="row">{{student.idStudent}}</td>
+          <td>{{student.nameStudent}}</td>
+          <td>{{student.lastName}}</td>
+          <td>{{student.enrollment}}</td>
+          <td>{{student.date_enrollment}}</td>
           <td>
             <div class="btn-group">
               <button (click)="openModal(template)" class="btn btn-sm btn-outline-primary">Professores</button>
-              <button class="btn btn-sm btn-outline-danger">Desativar</button>
+              <button class="btn btn-sm btn-outline-danger">Remover</button>
             </div>
           </td>
         </tr>
       </tbody>
     </table>
-    <div>
-      Gráfico
-      <!-- criar um componente pra cada, chart js -->
-    </div>
   </div>
 
 </div>

@@ -17,7 +17,7 @@ namespace API.Controllers
             this.repository = repository;
         }
 
-        [HttpGet("/get-all-student")]
+        [HttpGet("get-all-student")]
         public async Task<IActionResult> GetAllStudent()
         {
             try
@@ -30,7 +30,7 @@ namespace API.Controllers
             }
         }
 
-        [HttpGet("/get-student-byid")]
+        [HttpGet("get-student-byid")]
         public async Task<IActionResult> GetStudentById([FromQuery] int idStudent)
         {
             try
@@ -43,7 +43,7 @@ namespace API.Controllers
             }
         }
 
-        [HttpGet("/student-discipline")]
+        [HttpGet("student-discipline")]
         public async Task<IActionResult> GetDisciplineById([FromQuery] int idStudent)
         {
             try
@@ -56,7 +56,7 @@ namespace API.Controllers
             }
         }
 
-        [HttpPost("/add-student")]
+        [HttpPost("add-student")]
         public IActionResult AddStudent([FromBody] DTOStudent studentDTO)
         {
             try
@@ -70,7 +70,7 @@ namespace API.Controllers
             }
         }
 
-        [HttpPut("/update-student")]
+        [HttpPut("update-student")]
         public async Task<IActionResult> PutStudent([FromBody] DTOStudent studentDTO)
         {
 
@@ -90,7 +90,7 @@ namespace API.Controllers
             }
         }
 
-        [HttpDelete("/delte-student")]
+        [HttpDelete("delete-student")]
         public async Task<IActionResult> DeleteStudent([FromQuery] int idStudent)
         {
             try
