@@ -1,6 +1,6 @@
+import { Student } from './../models/Student';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Student } from '../models/Student';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { StudentService } from '../service/student.service';
 
@@ -14,11 +14,7 @@ export class StudentComponent implements OnInit {
   public modalRef?: BsModalRef;
   public title: string | undefined;
   public studentSelected: Student | undefined;
-  public textSimple: string | undefined;
-
   public studentForm: FormGroup = new FormGroup({});
-
-
   public students: Student[] | undefined;
 
   openModal(template: TemplateRef<any>) {
@@ -34,27 +30,11 @@ export class StudentComponent implements OnInit {
     this.loadStudents();
   }
 
-  loadStudents() {
-    this.studentService.getAll().subscribe(
-      (students: Student[]) => {
-        this.students = students;
-      },
-      (erro: any) => {
-        console.log(erro);
-      }
-    );
-
-  }
-
-  createForm() {
-    this.studentForm = this.fb.group({
-      name: ['', Validators.required],
-      lastname: ['', Validators.required]
-    });
-  }
-
-  studentSubmit() {
-    console.log(this.studentForm.value);
+  private applyControl() {
+    this.studentForm.addControl("nameStudent", []);
+    this.studentForm.addControl("lastName", []);
+    this.studentForm.addControl("enrollment", []);
+    this.studentForm.addControl("date_enrollment", []);
   }
 
   studentSelect(student: Student): void {
@@ -62,12 +42,63 @@ export class StudentComponent implements OnInit {
     this.studentForm.patchValue(student);
   }
 
-  return(): void {
-    this.studentSelected = undefined;
+  loadStudents() {
+    this.studentService.getAll().subscribe(
+      (students: Student[]) => {
+        this.students = students;
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+
   }
 
-  private applyControl() {
-    this.studentForm.addControl("name", []);
-    this.studentForm.addControl("lastname", []);
+  createForm() {
+    this.studentForm = this.fb.group({
+      idStudent: [''],
+      nameStudent: ['', Validators.required],
+      lastName: ['', Validators.required],
+      enrollment: ['', Validators.required],
+      date_enrollment: ['', Validators.required]
+    });
+  }
+
+  saveStudent(student: Student) {
+
+    this.studentService.put(student.idStudent, student).subscribe(
+      () => {
+        this.loadStudents();
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+  }
+
+  postStudent(student: Student) {
+
+    this.studentService.post(student).subscribe(
+      () => {
+        this.loadStudents();
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+  }
+
+  newStudent(){
+    this.studentSelected = new Student();
+    this.studentForm.patchValue(this.studentSelected);
+  }
+
+  studentSubmit() {
+    let sStudent: Student = this.studentForm.value;
+    (sStudent.idStudent != '') ? this.saveStudent(this.studentForm.value): this.postStudent(this.studentForm.value);
+  }
+
+  return(): void {
+    this.studentSelected = undefined;
   }
 }

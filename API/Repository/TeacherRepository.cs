@@ -19,14 +19,14 @@ namespace API.Repository
             return result;
         }
 
-        public async Task<DTOTeacher> GetTeacherById(int idTeacher)
+        public async Task<DTOTeacher> GetTeacherById(string idTeacher)
         {
             using var connection = new SqlConnection(_configuration.GetConnectionString("SqlConnection"));
             var result = await connection.QueryFirstAsync<DTOTeacher>("SELECT * FROM dbo.TABLE_TEACHER WHERE idTeacher = @id", param: new { id = idTeacher });
             return result;
         }
 
-        public async Task<DTODiscipline> GetTeacherDisciplineById(int idTeacher)
+        public async Task<DTODiscipline> GetTeacherDisciplineById(string idTeacher)
         {
             using var connection = new SqlConnection(_configuration.GetConnectionString("SqlConnection"));
             var result = await connection.QueryFirstAsync<DTODiscipline>("SELECT * FROM dbo.TABLE_DISCIPLINE WHERE idTeacher = @id", param: new { id = idTeacher });
@@ -46,7 +46,7 @@ namespace API.Repository
 
         }
 
-        public async void DeleteTeacher(int idTeacher)
+        public async void DeleteTeacher(string idTeacher)
         {
             using var connection = new SqlConnection(_configuration.GetConnectionString("SqlConnection"));
             await connection.ExecuteScalarAsync("DELETE FROM dbo.TABLE_TEACHER WHERE idTeacher = @id", param: new { id = idTeacher });

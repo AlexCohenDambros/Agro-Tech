@@ -17,10 +17,31 @@ export class StudentService {
     return this.http.get<Student[]>(`${this.baseUrl}/get-all-student`);
   }
 
-  getById(id: number): Observable<Student>{
+  getById(id: string): Observable<Student>{
     let queryParams = new HttpParams();
-    queryParams = queryParams.append('idStudent', id);
+    queryParams = queryParams.append('idStudent', id.toString());
     return this.http.get<Student>(`${this.baseUrl}/get-student-byid`, {params: queryParams});
   }
+
+  post(student: Student) {
+    return this.http.post(`${this.baseUrl}/add-student`, student)
+  }
+
+  put(id: string, student: Student) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('idStudent', id.toString());
+
+    const options = {
+        params: queryParams,
+    };
+
+    return this.http.put(`${this.baseUrl}/update-student`, student, options)
+  }
+
+  // delete(id: string){
+  //   let queryParams = new HttpParams();
+  //   queryParams = queryParams.append('idStudent', id.toString());
+  //   return this.http.delete(`${this.baseUrl}/delete-student`, {params: queryParams});
+  // }
 
 }

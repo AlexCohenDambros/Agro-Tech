@@ -5,14 +5,14 @@ namespace API.Interface
     public interface IStudentRepository
     {
         Task<IEnumerable<DTOStudent>> GetAllStudent();
-        Task<DTOStudent> GetStudentById(int idStudent);
+        Task<DTOStudent> GetStudentById(string idStudent);
 
-        Task<DTODiscipline> GetDisciplineById(int idDiscipline);
+        Task<DTODiscipline> GetDisciplineById(string idDiscipline);
 
         void AddStudent(DTOStudent student);
 
         void PutStudent(DTOStudent student);
 
-        void DeleteStudent(int idStudent);
+        void DeleteStudent(string idStudent);
     }
 }

@@ -1,30 +1,57 @@
+<div class="row">
 
-<div *ngIf="teacherSelected">
-  <app-title [title]="'Professor: ' + teacherSelected.name"></app-title>
-  <br />
-  <button class="btn btn-default" (click)="return()">Voltar</button>
-</div>
-<div *ngIf="!teacherSelected">
-  <app-title [title]="'Professores'"></app-title>
-  <table class="table table-hover">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">Visualizar</th>
-        <th scope="col">#</th>
-        <th scope="col">Nome</th>
-        <th scope="col">Sobrenome</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let teacher of teachers" style="cursor: pointer;" (click)="teacherSelect(teacher)">
-        <td>
-          <a [routerLink]="['/professor/', teacher.id]" class="text-dark btn btn-sm btn-outline-warning">Detalhe</a>
-        </td>
-        <th scope="row">{{teacher.id}}</th>
-        <td>{{teacher.name}}</td>
-        <td>{{teacher.lastname}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <div class="col-sm-6" *ngIf="teacherSelected">
+    <div class="row">
+      <div class="mr-auto">
+        <app-title [title]="'Professor: ' + teacherSelected.nameTeacher"></app-title>
+      </div>
+      <div class="mt-1">
+        <button class="btn btn-sm btn-outline-danger" (click)="return()">
+          Fechar
+        </button>
+      </div>
+    </div>
 
+    <form [formGroup]="teacherForm" (submit)="teacherSubmit()">
+      <div class="form-group">
+        <label for="formGroupExampleInput">Nome</label>
+        <input type="text" formControlName="nameTeacher" class="form-control">
+      </div>
+      <div class="form-group">
+        <hr>
+        <button class="btn btn-success" [disabled]="!teacherForm.valid">Enviar</button>
+      </div>
+    </form>
+  </div>
+
+  <div [ngClass]="{'col-sm-6': teacherSelected, 'col-sm-12': !teacherSelected}">
+    <app-title [title]="'Professores'">
+    </app-title>
+    <button class="btn btn-success">
+      Cadastrar Professor
+    </button>
+    <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Visualizar</th>
+          <th scope="col">#</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let teacher of teachers">
+          <td><button (click)="teacherSelect(teacher)" class="text-dark btn btn-sm btn-outline-warning"
+              style="cursor: pointer;">Detalhe</button></td>
+          <th scope="row">{{teacher.idTeacher}}</th>
+          <td>{{teacher.nameTeacher}}</td>
+          <td>
+            <div class="btn-group">
+              <button class="btn btn-sm btn-outline-primary">Alunos</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

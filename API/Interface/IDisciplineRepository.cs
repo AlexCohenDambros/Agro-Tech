@@ -5,6 +5,6 @@ namespace API.Interface
     public interface IDisciplineRepository
     {
         Task<IEnumerable<DTODiscipline>> GetAllDiscipline();
-        Task<DTODiscipline> GetDisciplineById(int idStudent);
+        Task<DTODiscipline> GetDisciplineById(string idStudent);
     }
 }

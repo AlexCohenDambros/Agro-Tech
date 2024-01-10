@@ -5,14 +5,14 @@ namespace API.Interface
     public interface ITeacherRepository
     {
         Task<IEnumerable<DTOTeacher>> GetAllTeacherAsync();
-        Task<DTOTeacher> GetTeacherById(int idTeacher);
+        Task<DTOTeacher> GetTeacherById(string idTeacher);
 
-        Task<DTODiscipline> GetTeacherDisciplineById(int idTeacher);
+        Task<DTODiscipline> GetTeacherDisciplineById(string idTeacher);
 
         void AddTeacher(DTOTeacher teacher);
 
         void PutTeacher(DTOTeacher teacher);
 
-        void DeleteTeacher(int idTeacher);
+        void DeleteTeacher(string idTeacher);
     }
 }

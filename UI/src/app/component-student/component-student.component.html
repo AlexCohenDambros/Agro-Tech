@@ -3,7 +3,7 @@
   <div class="col-sm-6" *ngIf="studentSelected">
     <div class="row">
       <div class="mr-auto">
-        <app-title [title]="'Aluno Selecionado: ' + studentSelected.nameStudent"></app-title>
+        <app-title [title]="(studentSelected.nameStudent === '' ? 'Novo Aluno' : 'Aluno Selecionado: ' + studentSelected.nameStudent)"></app-title>
       </div>
       <div class="mt-1">
         <button class="btn btn-sm btn-outline-danger" (click)="return()">
@@ -12,15 +12,24 @@
       </div>
     </div>
 
-    <form [formGroup]="studentForm">
+    <form [formGroup]="studentForm" (submit)="studentSubmit()">
       <div class="form-group">
         <label for="formGroupExampleInput">Nome</label>
-        <input type="text" formControlName="name" class="form-control">
+        <input type="text" formControlName="nameStudent" class="form-control">
       </div>
       <div class="form-group">
         <label for="formGroupExampleInput2">Sobrenome</label>
-        <input type="text" formControlName="lastname" class="form-control">
+        <input type="text" formControlName="lastName" class="form-control">
       </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput2">Matrícula</label>
+        <input type="text" formControlName="enrollment" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput2">Data de Matrícula</label>
+        <input type="text" formControlName="date_enrollment" class="form-control">
+      </div>
+
       <div class="form-group">
         <hr>
         <button class="btn btn-success" [disabled]="!studentForm.valid">Enviar</button>
@@ -30,6 +39,9 @@
 
   <div [ngClass]="{'col-sm-6': studentSelected, 'col-sm-12': !studentSelected}">
     <app-title [title]="'Alunos'"></app-title>
+    <button class="btn btn-success" (click)="newStudent()">
+      Cadastrar Aluno
+    </button>
     <table class="table table-hover">
       <thead class="thead-light">
         <tr>
@@ -44,8 +56,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let student of students">
-          <td><button (click)="studentSelect(student)"
-            class="text-dark btn btn-sm btn-outline-warning" style="cursor: pointer;">Detalhe</button></td>
+          <td><button (click)="studentSelect(student)" class="text-dark btn btn-sm btn-outline-warning"
+              style="cursor: pointer;">Detalhe</button></td>
           <td scope="row">{{student.idStudent}}</td>
           <td>{{student.nameStudent}}</td>
           <td>{{student.lastName}}</td>
@@ -61,9 +73,7 @@
       </tbody>
     </table>
   </div>
-
 </div>
-
 
 <ng-template #template>
   <div class="modal-body">

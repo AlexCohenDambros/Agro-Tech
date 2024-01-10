@@ -18,7 +18,7 @@ namespace API.Repository
             var result = await connection.QueryAsync<DTODiscipline>("SELECT * FROM dbo.TABLE_DISCIPLINE");
             return result;
         }
-        public async Task<DTODiscipline> GetDisciplineById(int idDiscipline)
+        public async Task<DTODiscipline> GetDisciplineById(string idDiscipline)
         {
             using var connection = new SqlConnection(_configuration.GetConnectionString("SqlConnection"));
             var result = await connection.QueryFirstAsync<DTODiscipline>("SELECT * FROM dbo.TABLE_DISCIPLINE WHERE idDiscipline = @id", param: new { id = idDiscipline });

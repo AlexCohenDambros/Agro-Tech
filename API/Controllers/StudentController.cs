@@ -31,7 +31,7 @@ namespace API.Controllers
         }
 
         [HttpGet("get-student-byid")]
-        public async Task<IActionResult> GetStudentById([FromQuery] int idStudent)
+        public async Task<IActionResult> GetStudentById([FromQuery] string idStudent)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace API.Controllers
         }
 
         [HttpGet("student-discipline")]
-        public async Task<IActionResult> GetDisciplineById([FromQuery] int idStudent)
+        public async Task<IActionResult> GetDisciplineById([FromQuery] string idStudent)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace API.Controllers
         }
 
         [HttpDelete("delete-student")]
-        public async Task<IActionResult> DeleteStudent([FromQuery] int idStudent)
+        public async Task<IActionResult> DeleteStudent([FromQuery] string idStudent)
         {
             try
             {
