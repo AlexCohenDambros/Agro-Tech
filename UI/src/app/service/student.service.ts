@@ -38,10 +38,10 @@ export class StudentService {
     return this.http.put(`${this.baseUrl}/update-student`, student, options)
   }
 
-  // delete(id: string){
-  //   let queryParams = new HttpParams();
-  //   queryParams = queryParams.append('idStudent', id.toString());
-  //   return this.http.delete(`${this.baseUrl}/delete-student`, {params: queryParams});
-  // }
+  delete(id: string){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('idStudent', id.toString());
+    return this.http.delete(`${this.baseUrl}/delete-student`, {params: queryParams});
+  }
 
 }

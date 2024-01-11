@@ -24,7 +24,7 @@ export class TeacherService {
   }
 
   post(Teacher: Teacher) {
-    return this.http.post(`${this.baseUrl}/add-teacher`, Teacher)
+    return this.http.post(`${this.baseUrl}/add-new-teacher`, Teacher)
   }
 
   put(id: string, Teacher: Teacher) {
@@ -38,10 +38,10 @@ export class TeacherService {
     return this.http.put(`${this.baseUrl}/update-teacher`, Teacher, options)
   }
 
-  // delete(id: string){
-  //   let queryParams = new HttpParams();
-  //   queryParams = queryParams.append('idTeacher', id.toString());
-  //   return this.http.delete(`${this.baseUrl}/delete-Teacher`, {params: queryParams});
-  // }
+  delete(id: string){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('idTeacher', id.toString());
+    return this.http.delete(`${this.baseUrl}/delete-teacher`, {params: queryParams});
+  }
 
 }

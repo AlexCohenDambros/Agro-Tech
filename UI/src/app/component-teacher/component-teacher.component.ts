@@ -34,14 +34,13 @@ export class TeacherComponent implements OnInit {
     this.teacherForm.patchValue(teacher);
   }
 
-
   loadTeachers() {
     this.teacherService.getAll().subscribe(
       (teachers: Teacher[]) => {
         this.teachers = teachers;
       },
       (error: any) => {
-        console.log(error);
+        console.error(error);
       }
     );
   }
@@ -51,8 +50,16 @@ export class TeacherComponent implements OnInit {
       idTeacher: [''],
       nameTeacher: ['', Validators.required],
     });
+  }
 
-    console.log(this.teacherForm)
+  newTeacher(){
+    this.teacherSelected = new Teacher();
+    this.teacherForm.patchValue(this.teacherSelected);
+  }
+
+  teacherSubmit() {
+    let sTeacher: Teacher = this.teacherForm.value;
+    (sTeacher.idTeacher != '') ? this.saveTeacher(this.teacherForm.value) : this.postTeacher(this.teacherForm.value);
   }
 
   saveTeacher(teacher: Teacher) {
@@ -61,13 +68,32 @@ export class TeacherComponent implements OnInit {
         this.loadTeachers();
       },
       (error: any) => {
-        console.log(error);
+        console.error(error);
       }
     );
   }
 
-  teacherSubmit() {
-    this.saveTeacher(this.teacherForm.value);
+  postTeacher(teacher: Teacher) {
+
+    this.teacherService.post(teacher).subscribe(
+      () => {
+        this.loadTeachers();
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
+  }
+
+  deleteTeacher(id: string){
+    this.teacherService.delete(id).subscribe(
+      () => {
+        this.loadTeachers();
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
   }
 
   return(): void {

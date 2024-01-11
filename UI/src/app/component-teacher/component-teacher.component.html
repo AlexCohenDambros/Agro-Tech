@@ -3,7 +3,7 @@
   <div class="col-sm-6" *ngIf="teacherSelected">
     <div class="row">
       <div class="mr-auto">
-        <app-title [title]="'Professor: ' + teacherSelected.nameTeacher"></app-title>
+        <app-title [title]="(teacherSelected.nameTeacher === '' ? 'Novo Professor' : 'Professor Selecionado: ' + teacherSelected.nameTeacher)"></app-title>
       </div>
       <div class="mt-1">
         <button class="btn btn-sm btn-outline-danger" (click)="return()">
@@ -27,7 +27,7 @@
   <div [ngClass]="{'col-sm-6': teacherSelected, 'col-sm-12': !teacherSelected}">
     <app-title [title]="'Professores'">
     </app-title>
-    <button class="btn btn-success">
+    <button class="btn btn-success" (click)="newTeacher()">
       Cadastrar Professor
     </button>
     <table class="table table-hover">
@@ -47,7 +47,7 @@
           <td>{{teacher.nameTeacher}}</td>
           <td>
             <div class="btn-group">
-              <button class="btn btn-sm btn-outline-primary">Alunos</button>
+              <button class="btn btn-sm btn-outline-danger" (click)="deleteTeacher(teacher.idTeacher)">Remover</button>
             </div>
           </td>
         </tr>

@@ -48,7 +48,7 @@ export class StudentComponent implements OnInit {
         this.students = students;
       },
       (error: any) => {
-        console.log(error);
+        console.error(error);
       }
     );
 
@@ -64,6 +64,16 @@ export class StudentComponent implements OnInit {
     });
   }
 
+  newStudent(){
+    this.studentSelected = new Student();
+    this.studentForm.patchValue(this.studentSelected);
+  }
+
+  studentSubmit() {
+    let sStudent: Student = this.studentForm.value;
+    (sStudent.idStudent != '') ? this.saveStudent(this.studentForm.value): this.postStudent(this.studentForm.value);
+  }
+
   saveStudent(student: Student) {
 
     this.studentService.put(student.idStudent, student).subscribe(
@@ -71,7 +81,7 @@ export class StudentComponent implements OnInit {
         this.loadStudents();
       },
       (error: any) => {
-        console.log(error);
+        console.error(error);
       }
     );
   }
@@ -83,19 +93,20 @@ export class StudentComponent implements OnInit {
         this.loadStudents();
       },
       (error: any) => {
-        console.log(error);
+        console.error(error);
       }
     );
   }
 
-  newStudent(){
-    this.studentSelected = new Student();
-    this.studentForm.patchValue(this.studentSelected);
-  }
-
-  studentSubmit() {
-    let sStudent: Student = this.studentForm.value;
-    (sStudent.idStudent != '') ? this.saveStudent(this.studentForm.value): this.postStudent(this.studentForm.value);
+  deleteSudent(id: string){
+    this.studentService.delete(id).subscribe(
+      () => {
+        this.loadStudents();
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
   }
 
   return(): void {
